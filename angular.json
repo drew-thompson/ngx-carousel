@@ -26,9 +26,7 @@
               "apps/ngx-carousel/src/favicon.ico",
               "apps/ngx-carousel/src/assets"
             ],
-            "styles": [
-              "apps/ngx-carousel/src/styles.scss"
-            ],
+            "styles": ["apps/ngx-carousel/src/styles.scss"],
             "scripts": [
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
@@ -86,9 +84,7 @@
               "apps/ngx-carousel/tsconfig.app.json",
               "apps/ngx-carousel/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -124,6 +120,37 @@
           "options": {
             "tsConfig": "apps/ngx-carousel-e2e/tsconfig.e2e.json"
           }
+        }
+      }
+    },
+    "carousel-feature": {
+      "projectType": "library",
+      "root": "libs/carousel/feature",
+      "sourceRoot": "libs/carousel/feature/src",
+      "prefix": "ngx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/carousel/feature/tsconfig.lib.json",
+              "libs/carousel/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/carousel/feature/jest.config.js",
+            "tsConfig": "libs/carousel/feature/tsconfig.spec.json",
+            "setupFile": "libs/carousel/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

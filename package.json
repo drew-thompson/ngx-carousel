@@ -24,7 +24,8 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "elements:build": "ng b --prod --output-hashing none && node elements-build.js"
   },
   "private": true,
   "dependencies": {
@@ -55,8 +56,10 @@
     "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
     "codelyzer": "~5.0.1",
+    "concat": "^1.0.3",
     "cypress": "^3.4.1",
     "dotenv": "6.2.0",
+    "fs-extra": "^8.1.0",
     "jest": "24.1.0",
     "jest-preset-angular": "^7.1.1",
     "prettier": "1.16.4",

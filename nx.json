@@ -13,6 +13,9 @@
     },
     "ngx-carousel": {
       "tags": []
+    },
+    "carousel-feature": {
+      "tags": ["platform:frontend", "type:feature"]
     }
   }
 }
