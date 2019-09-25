@@ -1,0 +1,15 @@
+button {
+	box-shadow: 0 2px 8px 0 rgba(22, 22, 22, 0.15);
+}
+
+mat-icon.mat-icon {
+	&.north {
+		transform: rotateZ(90deg);
+	}
+	&.east {
+		transform: rotateZ(180deg);
+	}
+	&.south {
+		transform: rotateZ(-90deg);
+	}
+}

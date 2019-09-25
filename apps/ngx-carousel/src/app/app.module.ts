@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CarouselFeatureModule } from '@ngx-carousel/carousel/feature';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselFeatureModule } from '@ngx-carousel/carousel/feature';
+import { CommonMaterialModule } from '@ngx-carousel/common/material';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CarouselFeatureModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    CarouselFeatureModule,
+    BrowserAnimationsModule,
+    CommonMaterialModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

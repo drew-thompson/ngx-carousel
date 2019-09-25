@@ -14,3 +14,6 @@ export interface CarouselItem {
   /** Optional text to be rendered with the carousel item. */
   title?: string;
 }
+
+/** All four cardinal directions. */
+export type CardinalDirection = 'north' | 'east' | 'south' | 'west';

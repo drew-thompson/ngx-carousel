@@ -9,13 +9,13 @@ import { CarouselItem } from '@ngx-carousel/data/models';
 export class AppComponent implements OnInit {
   title = 'ngx-carousel';
 
-  cages = ['', 'g', 'c', 'gif'].sort(() => Math.random() - 0.5);
+  cages = ['', 'g', 'c', 'gif', 'g'].sort(() => Math.random() - 0.5);
   items: CarouselItem[];
 
   constructor() {
     this.items = this.cages.map(cage => {
       const insert = cage ? `${cage}/` : '';
-      return { image: { url: `https://www.placecage.com/${insert}200/300` } };
+      return { image: { url: `https://www.placecage.com/${insert}500/300` } };
     });
   }
 

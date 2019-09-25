@@ -168,6 +168,57 @@
           }
         }
       }
+    },
+    "carousel-ui": {
+      "projectType": "library",
+      "root": "libs/carousel/ui",
+      "sourceRoot": "libs/carousel/ui/src",
+      "prefix": "ngx-carousel",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/carousel/ui/tsconfig.lib.json",
+              "libs/carousel/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/carousel/ui/jest.config.js",
+            "tsConfig": "libs/carousel/ui/tsconfig.spec.json",
+            "setupFile": "libs/carousel/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "common-material": {
+      "projectType": "library",
+      "root": "libs/common/material",
+      "sourceRoot": "libs/common/material/src",
+      "prefix": "ngx-carousel",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/common/material/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

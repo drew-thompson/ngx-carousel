@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
-import { MatButtonModule } from '@angular/material/button';
+import { CarouselUiModule } from '@ngx-carousel/carousel/ui';
 import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, CarouselUiModule],
   declarations: [CarouselComponent],
   exports: [CarouselComponent],
   entryComponents: [CarouselComponent]

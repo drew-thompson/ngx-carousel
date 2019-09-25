@@ -1,0 +1,16 @@
+section {
+	position: relative;
+	width: 100%;
+}
+
+ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {
+	position: absolute;
+	$radius: 1.25rem;
+	&.east {
+		right: $radius;
+	}
+
+	&.west {
+		left: $radius;
+	}
+}

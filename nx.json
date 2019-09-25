@@ -19,6 +19,12 @@
     },
     "data-models": {
       "tags": ["platform:shared", "type:util"]
+    },
+    "carousel-ui": {
+      "tags": ["platform:frontend", "type:ui"]
+    },
+    "common-material": {
+      "tags": ["platform:frontend", "type:util"]
     }
   }
 }
