@@ -1,7 +1,7 @@
 <section>
 
   <!-- TODO: Remove falsey conditional -->
-  <ng-container *ngIf="false && items.length">
+  <ng-container *ngIf="items.length">
     <ng-container *ngTemplateOutlet="images"></ng-container>
   </ng-container>
 
@@ -16,8 +16,11 @@
 
 <ng-template #images>
   <ng-container *ngFor="let item of items; let i=index">
-    <article *ngIf="item.image as image">
-      <img [src]="image.url" [alt]="image.alt || ''">
-    </article>
+    <ngx-carousel-item [overrideTypography]="true" [item]="item">
+      <header typography>
+        <h2>woah</h2>
+        <h3>cool</h3>
+      </header>
+    </ngx-carousel-item>
   </ng-container>
 </ng-template>
