@@ -1,13 +1,25 @@
 $buttonDiameter: 2.5rem;
 $buttonRadius: $buttonDiameter / 2;
+$trayHeight: 3rem;
+
+#arrow-wrapper {
+	position: relative;
+	height: 100%;
+}
+
+#image-wrapper {
+	overflow: hidden;
+	height: 100%;
+	border-radius: 5px;
+}
 
 section {
-	position: relative;
 	margin: calc(#{$buttonDiameter} - #{$buttonRadius / 2});
+	position: relative;
 	height: 300px;
+	padding-bottom: $trayHeight;
 	background-color: aliceblue;
-	// TODO: Hide overflow
-	// overflow: hidden;
+	border-radius: 5px;
 }
 
 ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {

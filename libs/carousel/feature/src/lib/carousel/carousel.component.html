@@ -1,17 +1,21 @@
 <section>
+  <div id="arrow-wrapper">
 
-  <!-- TODO: Remove falsey conditional -->
-  <ng-container *ngIf="items.length">
-    <ng-container *ngTemplateOutlet="images"></ng-container>
-  </ng-container>
+    <div id="image-wrapper">
+      <ng-container *ngIf="items.length as len">
+        <ng-container *ngTemplateOutlet="images"></ng-container>
+      </ng-container>
+    </div>
 
-
-  <ng-container *ngIf="hasArrows">
-    <ng-container *ngFor="let dir of arrowDirs">
-      <ngx-carousel-navigation-arrow [dir]="dir" [class]="dir"></ngx-carousel-navigation-arrow>
+    <ng-container *ngIf="hasArrows">
+      <ng-container *ngFor="let dir of arrowDirs">
+        <ngx-carousel-navigation-arrow [dir]="dir" [class]="dir"></ngx-carousel-navigation-arrow>
+      </ng-container>
     </ng-container>
+  </div>
 
-  </ng-container>
+  <ngx-carousel-indicator-dots [length]="items.length" [current]="getCurrentIndex()"></ngx-carousel-indicator-dots>
+
 </section>
 
 <ng-template #images>
