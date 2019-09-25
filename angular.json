@@ -26,8 +26,14 @@
               "apps/ngx-carousel/src/favicon.ico",
               "apps/ngx-carousel/src/assets"
             ],
-            "styles": ["apps/ngx-carousel/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "apps/ngx-carousel/src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -80,7 +86,9 @@
               "apps/ngx-carousel/tsconfig.app.json",
               "apps/ngx-carousel/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
