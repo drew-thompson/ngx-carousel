@@ -7,8 +7,10 @@
 
 
   <ng-container *ngIf="hasArrows">
-    <ngx-carousel-navigation-arrow dir="east" class="east"></ngx-carousel-navigation-arrow>
-    <ngx-carousel-navigation-arrow dir="west" class="west"></ngx-carousel-navigation-arrow>
+    <ng-container *ngFor="let dir of arrowDirs">
+      <ngx-carousel-navigation-arrow [dir]="dir" [class]="dir"></ngx-carousel-navigation-arrow>
+    </ng-container>
+
   </ng-container>
 </section>
 
