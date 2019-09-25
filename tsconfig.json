@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ngx-carousel/carousel/feature": ["libs/carousel/feature/src/index.ts"]
+      "@ngx-carousel/carousel/feature": ["libs/carousel/feature/src/index.ts"],
+      "@ngx-carousel/data/models": ["libs/data/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,10 +1,11 @@
 import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation
 } from '@angular/core';
+import { CarouselItem } from '@ngx-carousel/data/models';
 
 @Component({
   selector: 'ngx-carousel',
@@ -14,8 +15,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit {
-  /** Images to display in carousel. */
-  @Input() images: string[];
+  /** Items to display in carousel. */
+  @Input() items: CarouselItem[];
   /** Whether the carousel bounds fold into each other. */
   @Input() revolves = true;
 

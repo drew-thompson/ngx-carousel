@@ -1,3 +1,7 @@
-<p>
-  carousel works!
-</p>
+<section>
+  <ng-container *ngFor="let item of items; let i=index">
+    <article *ngIf="item.image as image">
+      <img [src]="image.url" [alt]="image.alt || ''">
+    </article>
+  </ng-container>
+</section>

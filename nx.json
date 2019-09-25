@@ -16,6 +16,9 @@
     },
     "carousel-feature": {
       "tags": ["platform:frontend", "type:feature"]
+    },
+    "data-models": {
+      "tags": ["platform:shared", "type:util"]
     }
   }
 }
