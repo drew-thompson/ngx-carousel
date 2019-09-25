@@ -1,0 +1,18 @@
+{
+  "npmScope": "ngx-carousel",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "ngx-carousel-e2e": {
+      "tags": []
+    },
+    "ngx-carousel": {
+      "tags": []
+    }
+  }
+}
