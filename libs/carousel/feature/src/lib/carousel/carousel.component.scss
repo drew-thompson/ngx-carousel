@@ -4,13 +4,17 @@ $trayHeight: 3rem;
 
 #arrow-wrapper {
 	position: relative;
-	height: 100%;
 }
 
 #image-wrapper {
 	overflow: hidden;
-	height: 100%;
 	border-radius: 5px;
+}
+
+#arrow-wrapper,
+#image-wrapper,
+article {
+	height: 100%;
 }
 
 section {

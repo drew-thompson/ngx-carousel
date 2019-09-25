@@ -9,22 +9,26 @@
 
     <ng-container *ngIf="hasArrows">
       <ng-container *ngFor="let dir of arrowDirs">
-        <ngx-carousel-navigation-arrow [dir]="dir" [class]="dir"></ngx-carousel-navigation-arrow>
+        <ngx-carousel-navigation-arrow (click)="navigate(dir)" [dir]="dir" [class]="dir">
+        </ngx-carousel-navigation-arrow>
       </ng-container>
     </ng-container>
   </div>
 
-  <ngx-carousel-indicator-dots [length]="items.length" [current]="getCurrentIndex()"></ngx-carousel-indicator-dots>
+  <ngx-carousel-indicator-dots (selected)="select($event)" [length]="items.length" [current]="getCurrentIndex()">
+  </ngx-carousel-indicator-dots>
 
 </section>
 
 <ng-template #images>
   <ng-container *ngFor="let item of items; let i=index">
-    <ngx-carousel-item [overrideTypography]="true" [item]="item">
-      <header typography>
-        <h2>woah</h2>
-        <h3>cool</h3>
-      </header>
-    </ngx-carousel-item>
+    <article *ngIf="i === getCurrentIndex()">
+      <ngx-carousel-item [overrideTypography]="true" [item]="item">
+        <header typography>
+          <h2>woah</h2>
+          <h3>cool</h3>
+        </header>
+      </ngx-carousel-item>
+    </article>
   </ng-container>
 </ng-template>
