@@ -15,7 +15,12 @@ export class AppComponent {
   constructor() {
     this.items = this.cages.map(cage => {
       const insert = cage ? `${cage}/` : '';
-      return { image: { url: `https://www.placecage.com/${insert}500/300` } };
+      return {
+        image: {
+          url: `https://www.placecage.com/${insert}500/300`,
+          alt: 'Nicky Cage'
+        }
+      };
     });
   }
 }
