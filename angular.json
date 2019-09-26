@@ -234,6 +234,21 @@
           }
         }
       }
+    },
+    "data-enums": {
+      "root": "libs/data/enums",
+      "sourceRoot": "libs/data/enums/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/data/enums/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

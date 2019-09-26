@@ -28,6 +28,9 @@
     },
     "carousel-utils": {
       "tags": ["platform:frontend", "type:util"]
+    },
+    "data-enums": {
+      "tags": ["platform:shared", "type:util"]
     }
   }
 }

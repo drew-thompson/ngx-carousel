@@ -1,10 +1,10 @@
 <section (swipeRight)="prev()"
   (swipeLeft)="next()"
-  (press)="pause()"
-  (pressup)="play()"
-  (panstart)="pause()"
-  (panend)="play()"
-  (pancancel)="play()">
+  (press)="onTouchAction(CarouselControlAction.Pause)"
+  (pressup)="onTouchAction(CarouselControlAction.Play)"
+  (panstart)="onTouchAction(CarouselControlAction.Pause)"
+  (panend)="onTouchAction(CarouselControlAction.Play)"
+  (pancancel)="onTouchAction(CarouselControlAction.Play)">
 
   <div id="arrow-wrapper">
 
@@ -28,7 +28,11 @@
       [length]="items.length"
       [current]="getCurrentIndex()">
     </ngx-carousel-indicator-dots>
+
   </div>
+
+  <ngx-carousel-controls (controlled)="onControlled($event)"
+    [isPlaying]="isPlaying"></ngx-carousel-controls>
 
   <ng-container *ngIf="progress$ | async as progress">
     <mat-progress-bar [value]="progress"></mat-progress-bar>

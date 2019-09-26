@@ -1,10 +1,12 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
   OnDestroy,
   OnInit
 } from '@angular/core';
+import { CarouselControlAction } from '@ngx-carousel/data/enums';
 import {
   CardinalDirection,
   CarouselItem,
@@ -19,8 +21,8 @@ import { delay, throttleTime } from 'rxjs/operators';
 @Component({
   selector: 'ngx-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./carousel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit, OnDestroy {
   /** Items to display in carousel. */
@@ -48,6 +50,9 @@ export class CarouselComponent implements OnInit, OnDestroy {
   timeUntilNextNavigation = this.delay;
   progress$: Observable<number>;
 
+  /** Exposed for use in template. */
+  CarouselControlAction = CarouselControlAction;
+
   private index: number;
   private dateLastNavigated: Date = new Date();
 
@@ -74,13 +79,25 @@ export class CarouselComponent implements OnInit, OnDestroy {
     return this.index;
   }
 
+  onControlled(action: CarouselControlAction): void {
+    switch (action) {
+      case CarouselControlAction.Pause:
+        this.pause();
+        break;
+      case CarouselControlAction.Play:
+        this.play();
+        break;
+      default:
+        console.warn('[Carousel] Control action not recongnized', action);
+    }
+  }
+
   /**
    * Begins automatic progression of the carousel's slideshow functionality.
    */
   play({
-    navigationDelay = this.timeUntilNextNavigation,
-    period = this.period
-  }: { navigationDelay?: number; period?: number } = {}): void {
+    navigationDelay = this.timeUntilNextNavigation
+  }: { navigationDelay?: number } = {}): void {
     // Only allow play functions to occur when automatically cycling
     if (!this.automatic) {
       return;
@@ -98,7 +115,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     const ticks$ = timer(0, 250);
     const next$ = ticks$.pipe(
       delay(navigationDelay),
-      throttleTime(period)
+      throttleTime(this.period)
     );
 
     this.timerSubscription = next$.subscribe(() => {
@@ -194,6 +211,14 @@ export class CarouselComponent implements OnInit, OnDestroy {
     if (this.automatic) {
       this.play();
     }
+  }
+
+  onTouchAction(action: CarouselControlAction): void {
+    // Reset navigation delay on touch action
+    if (action === CarouselControlAction.Play) {
+      this.timeUntilNextNavigation = this.period;
+    }
+    this.onControlled(action);
   }
 
   private initIndex(): void {

@@ -20,7 +20,8 @@
       "@ngx-carousel/data/models": ["libs/data/models/src/index.ts"],
       "@ngx-carousel/carousel/ui": ["libs/carousel/ui/src/index.ts"],
       "@ngx-carousel/common/material": ["libs/common/material/src/index.ts"],
-      "@ngx-carousel/carousel/utils": ["libs/carousel/utils/src/index.ts"]
+      "@ngx-carousel/carousel/utils": ["libs/carousel/utils/src/index.ts"],
+      "@ngx-carousel/data/enums": ["libs/data/enums/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

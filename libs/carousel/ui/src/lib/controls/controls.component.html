@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button (click)="controlled.emit(isPlaying ? CarouselControlAction.Pause : CarouselControlAction.Play)"
+    mat-icon-button
+    type="button"
+    style="margin: auto">
+    <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
+</mat-toolbar>

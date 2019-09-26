@@ -66,3 +66,10 @@ ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {
 ngx-carousel-indicator-dots.ngx-carousel-indicator-dots {
 	color: white;
 }
+
+ngx-carousel-controls.ngx-carousel-controls {
+	display: block;
+	margin-left: -$sectionPadding;
+	margin-right: -$sectionPadding;
+	padding-top: 1rem;
+}
