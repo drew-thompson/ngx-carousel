@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CarouselItem } from '@ngx-carousel/data/models';
+import { CarouselItem, ImageDisplayMode } from '@ngx-carousel/data/models';
 
 @Component({
   selector: 'ngx-carousel-root',
@@ -11,6 +11,9 @@ export class AppComponent {
 
   cages = ['', 'g', 'c', 'gif', 'g'].sort(() => Math.random() - 0.5);
   items: CarouselItem[];
+
+  cover: ImageDisplayMode = 'cover';
+  contain: ImageDisplayMode = 'contain';
 
   constructor() {
     this.items = this.cages.map(cage => {

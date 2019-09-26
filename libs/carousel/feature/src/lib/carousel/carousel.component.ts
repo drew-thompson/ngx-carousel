@@ -62,7 +62,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.initIndex();
 
     if (this.autoplay) {
-      this.play();
+      this.play({ navigationDelay: this.delay });
     }
   }
 
@@ -85,11 +85,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
   play({
     navigationDelay = this.timeUntilNextNavigation
   }: { navigationDelay?: number } = {}): void {
-    // Only allow play functions to occur when automatically cycling
-    if (!this.autoplay) {
-      return;
-    }
-
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
@@ -221,6 +216,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
     // Reset navigation delay on touch action
     if (action === CarouselControlAction.Play) {
       this.timeUntilNextNavigation = this.period;
+    }
+    // Only allow play functions to occur when automatically cycling
+    if (!this.autoplay) {
+      return;
     }
     this.onControlled(action);
   }

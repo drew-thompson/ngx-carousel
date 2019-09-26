@@ -1,15 +1,16 @@
 <section (swipeRight)="prev(); pause()"
   (swipeLeft)="next(); pause()"
   (press)="onTouchAction(CarouselControlAction.Pause)"
-  (pressup)="onTouchAction(CarouselControlAction.Play)">
+  (pressup)="onTouchAction(CarouselControlAction.Play)"
+  [ngClass]="imageDisplayMode">
 
   <div id="arrow-wrapper">
 
-    <div id="image-wrapper">
+    <ul id="image-wrapper">
       <ng-container *ngIf="items.length as len">
         <ng-container *ngTemplateOutlet="images"></ng-container>
       </ng-container>
-    </div>
+    </ul>
 
     <ng-container *ngIf="hasArrows">
       <ng-container *ngFor="let dir of arrowDirs">
@@ -39,7 +40,7 @@
 
 <ng-template #images>
   <ng-container *ngFor="let item of items; let i=index">
-    <article *ngIf="i === getCurrentIndex()">
+    <li *ngIf="i === getCurrentIndex()">
       <ngx-carousel-item [imageDisplayMode]="imageDisplayMode"
         [overrideTypography]="true"
         [item]="item">
@@ -48,6 +49,6 @@
           <h3>cool</h3>
         </header> -->
       </ngx-carousel-item>
-    </article>
+    </li>
   </ng-container>
 </ng-template>

@@ -23,15 +23,33 @@ article {
 	height: 100%;
 }
 
+li {
+	list-style: none;
+	height: 100%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
 section {
 	padding: $sectionPadding;
 	margin: calc(#{$buttonDiameter} - #{$buttonRadius / 2});
 	position: relative;
-	height: 300px;
-	// width: 500px;
-	padding-bottom: $trayHeight;
-	background-color: aliceblue;
+	padding-bottom: 0;
+	background-color: rgba(#0089ce, 0.1);
 	border-radius: 5px;
+
+	&.cover,
+	&.contain {
+		height: 300px;
+		padding-bottom: $sectionPadding;
+
+		ngx-carousel-controls.ngx-carousel-controls {
+			padding-top: $sectionPadding;
+		}
+	}
 }
 
 ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {

@@ -1,2 +1,36 @@
+<header>
+    <img src="assets/images/cage-usol.png"
+        alt="Cage-usol">
+</header>
+
+<h2 class="mat-headline">Default</h2>
+
 <ngx-carousel [items]="items"
     [autoplay]="true"></ngx-carousel>
+
+<h2 class="mat-headline">No Arrow Navigation</h2>
+
+<ngx-carousel [items]="items"
+    [autoplay]="true"
+    [hasArrows]="false"></ngx-carousel>
+
+<h2 class="mat-headline">No-Autoplay Life</h2>
+
+<ngx-carousel [items]="items"></ngx-carousel>
+
+<h2 class="mat-headline">Shorter Timing, Big Delay</h2>
+
+<ngx-carousel [items]="items"
+    [autoplay]="true"
+    [period]="2000"
+    [delay]="10000"></ngx-carousel>
+
+<h2 class="mat-headline">Cover Images</h2>
+
+<ngx-carousel [items]="items"
+    [imageDisplayMode]="cover"></ngx-carousel>
+
+<h2 class="mat-headline mt-6">Contained Images</h2>
+
+<ngx-carousel [items]="items"
+    [imageDisplayMode]="contain"></ngx-carousel>
