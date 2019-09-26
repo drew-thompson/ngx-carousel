@@ -1,10 +1,7 @@
-<section (swipeRight)="prev()"
-  (swipeLeft)="next()"
+<section (swipeRight)="prev(); pause()"
+  (swipeLeft)="next(); pause()"
   (press)="onTouchAction(CarouselControlAction.Pause)"
-  (pressup)="onTouchAction(CarouselControlAction.Play)"
-  (panstart)="onTouchAction(CarouselControlAction.Pause)"
-  (panend)="onTouchAction(CarouselControlAction.Play)"
-  (pancancel)="onTouchAction(CarouselControlAction.Play)">
+  (pressup)="onTouchAction(CarouselControlAction.Play)">
 
   <div id="arrow-wrapper">
 

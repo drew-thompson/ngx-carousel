@@ -32,7 +32,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   /** Whether the carousel bounds fold into each other. */
   @Input() revolves = true;
   /** Whether the slideshow functionality begins upon injection. */
-  @Input() automatic: boolean;
+  @Input() autoplay: boolean;
   /** Number of milliseconds between automatic navigations. */
   @Input() period = 5000;
   /** If designated as `automatic`, the number of ms before the slideshow begins. */
@@ -61,7 +61,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initIndex();
 
-    if (this.automatic) {
+    if (this.autoplay) {
       this.play();
     }
   }
@@ -79,19 +79,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
     return this.index;
   }
 
-  onControlled(action: CarouselControlAction): void {
-    switch (action) {
-      case CarouselControlAction.Pause:
-        this.pause();
-        break;
-      case CarouselControlAction.Play:
-        this.play();
-        break;
-      default:
-        console.warn('[Carousel] Control action not recongnized', action);
-    }
-  }
-
   /**
    * Begins automatic progression of the carousel's slideshow functionality.
    */
@@ -99,7 +86,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     navigationDelay = this.timeUntilNextNavigation
   }: { navigationDelay?: number } = {}): void {
     // Only allow play functions to occur when automatically cycling
-    if (!this.automatic) {
+    if (!this.autoplay) {
       return;
     }
 
@@ -201,15 +188,32 @@ export class CarouselComponent implements OnInit, OnDestroy {
    */
   select(index: number): void {
     this.index = index;
-    if (this.automatic) {
-      this.play();
+    if (this.autoplay) {
+      this.pause();
     }
   }
 
   onNavigated(direction: CardinalDirection): void {
     this.navigate(direction);
-    if (this.automatic && !this.isPlaying) {
-      this.play();
+    if (this.autoplay && this.isPlaying) {
+      this.pause();
+    }
+  }
+
+  /**
+   * Routes user actions to carousel operations.
+   * @param action Action to perform
+   */
+  onControlled(action: CarouselControlAction): void {
+    switch (action) {
+      case CarouselControlAction.Pause:
+        this.pause();
+        break;
+      case CarouselControlAction.Play:
+        this.play();
+        break;
+      default:
+        console.warn('[Carousel] Control action not recongnized', action);
     }
   }
 
