@@ -2,7 +2,6 @@
 	display: flex;
 	position: relative;
 	height: 100%;
-	padding: 0.25rem;
 }
 
 .overlay {
@@ -33,5 +32,15 @@ img {
 	}
 
 	&.contain {
+		position: absolute;
+		left: -10000%;
+		right: -10000%;
+		top: -10000%;
+		bottom: -10000%;
+		margin: auto auto;
+		max-width: 10%;
+		max-height: 10%;
+		transform: scale(10);
+		border-radius: 0;
 	}
 }

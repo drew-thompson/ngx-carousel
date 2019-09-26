@@ -40,7 +40,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   /** Navigation directions to display when arrow navigation is enabled. */
   @Input() arrowDirs: CardinalDirection[] = ['east', 'west'];
   /** Style of images displayed in queue. */
-  @Input() imageDisplayMode: ImageDisplayMode = 'cover';
+  @Input() imageDisplayMode: ImageDisplayMode = 'initial';
 
   isPlaying: boolean;
 
@@ -81,6 +81,11 @@ export class CarouselComponent implements OnInit, OnDestroy {
     navigationDelay = this.timeUntilNextNavigation,
     period = this.period
   }: { navigationDelay?: number; period?: number } = {}): void {
+    // Only allow play functions to occur when automatically cycling
+    if (!this.automatic) {
+      return;
+    }
+
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
@@ -179,12 +184,16 @@ export class CarouselComponent implements OnInit, OnDestroy {
    */
   select(index: number): void {
     this.index = index;
-    this.play();
+    if (this.automatic) {
+      this.play();
+    }
   }
 
   onNavigated(direction: CardinalDirection): void {
     this.navigate(direction);
-    this.play();
+    if (this.automatic) {
+      this.play();
+    }
   }
 
   private initIndex(): void {

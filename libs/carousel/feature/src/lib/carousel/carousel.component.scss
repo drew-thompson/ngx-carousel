@@ -1,7 +1,7 @@
 $buttonDiameter: 2.5rem;
 $buttonRadius: $buttonDiameter / 2;
 $sectionPadding: 0.5rem;
-$offset: $buttonRadius + $sectionPadding;
+$offset: $buttonRadius + $sectionPadding / 2;
 $trayHeight: 3rem;
 
 #arrow-wrapper {
@@ -54,12 +54,12 @@ ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {
 
 	&.east,
 	&.west {
-		top: calc(50% - #{$sectionPadding});
+		top: calc(50% - #{$buttonRadius});
 	}
 
 	&.north,
 	&.south {
-		left: calc(50% - #{$sectionPadding});
+		left: calc(50% - #{$buttonRadius});
 	}
 }
 

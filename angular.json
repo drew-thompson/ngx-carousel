@@ -219,6 +219,21 @@
           "styleext": "scss"
         }
       }
+    },
+    "carousel-utils": {
+      "root": "libs/carousel/utils",
+      "sourceRoot": "libs/carousel/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/carousel/utils/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

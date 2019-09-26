@@ -1,7 +1,10 @@
 <section (swipeRight)="prev()"
   (swipeLeft)="next()"
   (press)="pause()"
-  (pressup)="play()">
+  (pressup)="play()"
+  (panstart)="pause()"
+  (panend)="play()"
+  (pancancel)="play()">
 
   <div id="arrow-wrapper">
 
@@ -39,10 +42,10 @@
       <ngx-carousel-item [imageDisplayMode]="imageDisplayMode"
         [overrideTypography]="true"
         [item]="item">
-        <header typography>
+        <!-- <header typography>
           <h2>woah</h2>
           <h3>cool</h3>
-        </header>
+        </header> -->
       </ngx-carousel-item>
     </article>
   </ng-container>

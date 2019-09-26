@@ -25,6 +25,9 @@
     },
     "common-material": {
       "tags": ["platform:frontend", "type:util"]
+    },
+    "carousel-utils": {
+      "tags": ["platform:frontend", "type:util"]
     }
   }
 }

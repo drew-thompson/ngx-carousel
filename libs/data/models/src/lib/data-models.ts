@@ -19,4 +19,4 @@ export interface CarouselItem {
 export type CardinalDirection = 'north' | 'east' | 'south' | 'west';
 
 /** How an image will be displayed. */
-export type ImageDisplayMode = 'cover' | 'container' | 'initial';
+export type ImageDisplayMode = 'cover' | 'contain' | 'initial';
