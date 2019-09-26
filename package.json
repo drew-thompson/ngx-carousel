@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "nx lint && ng lint",
     "e2e": "ng e2e",
-    "deploy": "npm run elements:build && firebase deploy",
+    "deploy": "npm run elements:build && npm run gh-pages:build && npm run gh-pages:deploy && npm run deploy:firebase",
+    "deploy:firebase": "firebase deploy",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -26,7 +27,9 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "elements:build": "ng b --prod --output-hashing none && node elements-build.js"
+    "elements:build": "ng b --prod --output-hashing none && node elements-build.js",
+    "gh-pages:build": "ng build --prod --base-href 'https://drew-thompson.github.io/ngx-carousel/'",
+    "gh-pages:deploy": "ngh --dir ./dist/apps/ngx-carousel"
   },
   "private": true,
   "dependencies": {
@@ -59,6 +62,7 @@
     "@nrwl/workspace": "8.1.0",
     "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
+    "angular-cli-ghpages": "^0.6.0",
     "codelyzer": "~5.0.1",
     "concat": "^1.0.3",
     "cypress": "^3.4.1",
