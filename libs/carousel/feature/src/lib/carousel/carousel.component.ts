@@ -208,7 +208,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
   onNavigated(direction: CardinalDirection): void {
     this.navigate(direction);
-    if (this.automatic) {
+    if (this.automatic && !this.isPlaying) {
       this.play();
     }
   }
