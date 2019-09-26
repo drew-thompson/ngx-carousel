@@ -1,4 +1,8 @@
-<section>
+<section (swipeRight)="prev()"
+  (swipeLeft)="next()"
+  (press)="pause()"
+  (pressup)="play()">
+
   <div id="arrow-wrapper">
 
     <div id="image-wrapper">
@@ -9,21 +13,32 @@
 
     <ng-container *ngIf="hasArrows">
       <ng-container *ngFor="let dir of arrowDirs">
-        <ngx-carousel-navigation-arrow (click)="navigate(dir)" [dir]="dir" [class]="dir">
+        <ngx-carousel-navigation-arrow (click)="onNavigated(dir)"
+          [dir]="dir"
+          [class]="dir">
         </ngx-carousel-navigation-arrow>
       </ng-container>
     </ng-container>
+
+    <ngx-carousel-indicator-dots [diameter]="24"
+      (selected)="select($event)"
+      [length]="items.length"
+      [current]="getCurrentIndex()">
+    </ngx-carousel-indicator-dots>
   </div>
 
-  <ngx-carousel-indicator-dots (selected)="select($event)" [length]="items.length" [current]="getCurrentIndex()">
-  </ngx-carousel-indicator-dots>
+  <ng-container *ngIf="progress$ | async as progress">
+    <mat-progress-bar [value]="progress"></mat-progress-bar>
+  </ng-container>
 
 </section>
 
 <ng-template #images>
   <ng-container *ngFor="let item of items; let i=index">
     <article *ngIf="i === getCurrentIndex()">
-      <ngx-carousel-item [overrideTypography]="true" [item]="item">
+      <ngx-carousel-item [imageDisplayMode]="imageDisplayMode"
+        [overrideTypography]="true"
+        [item]="item">
         <header typography>
           <h2>woah</h2>
           <h3>cool</h3>

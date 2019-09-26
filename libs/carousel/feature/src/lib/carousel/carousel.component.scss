@@ -1,9 +1,15 @@
 $buttonDiameter: 2.5rem;
 $buttonRadius: $buttonDiameter / 2;
+$sectionPadding: 0.5rem;
+$offset: $buttonRadius + $sectionPadding;
 $trayHeight: 3rem;
 
 #arrow-wrapper {
 	position: relative;
+	cursor: grab;
+	&:active {
+		cursor: grabbing;
+	}
 }
 
 #image-wrapper {
@@ -18,9 +24,11 @@ article {
 }
 
 section {
+	padding: $sectionPadding;
 	margin: calc(#{$buttonDiameter} - #{$buttonRadius / 2});
 	position: relative;
 	height: 300px;
+	// width: 500px;
 	padding-bottom: $trayHeight;
 	background-color: aliceblue;
 	border-radius: 5px;
@@ -29,28 +37,32 @@ section {
 ngx-carousel-navigation-arrow.ngx-carousel-navigation-arrow {
 	position: absolute;
 	&.east {
-		right: -$buttonRadius;
+		right: -$offset;
 	}
 
 	&.west {
-		left: -$buttonRadius;
+		left: -$offset;
 	}
 
 	&.north {
-		top: -$buttonRadius;
+		top: -$offset;
 	}
 
 	&.south {
-		bottom: -$buttonRadius;
+		bottom: -$offset;
 	}
 
 	&.east,
 	&.west {
-		top: calc(50% - #{$buttonRadius});
+		top: calc(50% - #{$sectionPadding});
 	}
 
 	&.north,
 	&.south {
-		left: calc(50% - #{$buttonRadius});
+		left: calc(50% - #{$sectionPadding});
 	}
+}
+
+ngx-carousel-indicator-dots.ngx-carousel-indicator-dots {
+	color: white;
 }

@@ -1,6 +1,6 @@
 <div id="wrapper" class="mat-typography">
   <ng-container *ngIf="item && item.image as image; else placeholder">
-    <img [src]="image.url" [alt]="image.alt || ''">
+    <img [ngClass]="imageDisplayMode" [src]="image.url" [alt]="image.alt || ''">
   </ng-container>
 
   <ng-template #placeholder>

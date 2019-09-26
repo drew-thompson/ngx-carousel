@@ -1,5 +1,6 @@
 <div>
   <ng-container *ngFor="let _ of getIterable(); let i=index">
-    <ngx-carousel-indicator-dot [isSelected]="i === current" (selected)="selected.emit(i)"></ngx-carousel-indicator-dot>
+    <ngx-carousel-indicator-dot [isSelected]="i === current" [diameter]="diameter" (selected)="selected.emit(i)">
+    </ngx-carousel-indicator-dot>
   </ng-container>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CarouselItem } from '@ngx-carousel/data/models';
 
 @Component({
@@ -6,7 +6,7 @@ import { CarouselItem } from '@ngx-carousel/data/models';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'ngx-carousel';
 
   cages = ['', 'g', 'c', 'gif', 'g'].sort(() => Math.random() - 0.5);
@@ -18,6 +18,4 @@ export class AppComponent implements OnInit {
       return { image: { url: `https://www.placecage.com/${insert}500/300` } };
     });
   }
-
-  ngOnInit() {}
 }

@@ -1,3 +1,4 @@
-<button (click)="selected.emit()" mat-icon-button type="button">
+<button (click)="selected.emit()" mat-icon-button [style.width.px]="diameter" [style.height.px]="diameter"
+  [style.line-height.px]="diameter" type="button">
   <mat-icon>radio_button_{{ isSelected ? '' : 'un' }}checked</mat-icon>
 </button>

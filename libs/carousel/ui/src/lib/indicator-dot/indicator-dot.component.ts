@@ -15,6 +15,8 @@ import {
 export class IndicatorDotComponent {
   /** Whether this dot represents the selected index. */
   @Input() isSelected: boolean;
+  /** Number of pixels wide to render this dot. */
+  @Input() diameter = 32;
 
   @Output() selected: EventEmitter<void> = new EventEmitter<void>();
 }

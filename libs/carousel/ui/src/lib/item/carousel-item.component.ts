@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CarouselItem } from '@ngx-carousel/data/models';
+import { CarouselItem, ImageDisplayMode } from '@ngx-carousel/data/models';
 
 @Component({
   selector: 'ngx-carousel-item',
@@ -12,4 +12,6 @@ export class CarouselItemComponent {
   @Input() item: CarouselItem;
   /** Whether default typography bindings should be ignored. */
   @Input() overrideTypography = false;
+  /** Display mode applied to each image. */
+  @Input() imageDisplayMode: ImageDisplayMode;
 }

@@ -1,10 +1,17 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
+  OnDestroy,
   OnInit
 } from '@angular/core';
-import { CardinalDirection, CarouselItem } from '@ngx-carousel/data/models';
+import {
+  CardinalDirection,
+  CarouselItem,
+  ImageDisplayMode
+} from '@ngx-carousel/data/models';
+import { Observable, of, Subscription, timer } from 'rxjs';
+import { delay, throttleTime } from 'rxjs/operators';
 
 /**
  * Displays a list of `CarouselItem`s in a navigable, accessible slideshow format.
@@ -12,10 +19,10 @@ import { CardinalDirection, CarouselItem } from '@ngx-carousel/data/models';
 @Component({
   selector: 'ngx-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./carousel.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, OnDestroy {
   /** Items to display in carousel. */
   @Input() items: CarouselItem[];
   /** Initial index of provided `items` to select. Defaults to `0` if index is out of range. */
@@ -24,22 +31,39 @@ export class CarouselComponent implements OnInit {
   @Input() revolves = true;
   /** Whether the slideshow functionality begins upon injection. */
   @Input() automatic: boolean;
+  /** Number of milliseconds between automatic navigations. */
+  @Input() period = 5000;
   /** If designated as `automatic`, the number of ms before the slideshow begins. */
-  @Input() delay = 0;
+  @Input() delay = this.period;
   /** Whether the carousel includes navigation arrows on either side of the carousel. */
   @Input() hasArrows = true;
   /** Navigation directions to display when arrow navigation is enabled. */
   @Input() arrowDirs: CardinalDirection[] = ['east', 'west'];
+  /** Style of images displayed in queue. */
+  @Input() imageDisplayMode: ImageDisplayMode = 'cover';
+
+  isPlaying: boolean;
+
+  timerSubscription: Subscription;
+  timeUntilNextNavigation = this.delay;
+  progress$: Observable<number>;
 
   private index: number;
+  private dateLastNavigated: Date = new Date();
 
-  constructor() {}
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
-    if (this.items[this.initialIndex]) {
-      this.index = this.initialIndex;
-    } else {
-      this.index = 0;
+    this.initIndex();
+
+    if (this.automatic) {
+      this.play();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
     }
   }
 
@@ -53,17 +77,56 @@ export class CarouselComponent implements OnInit {
   /**
    * Begins automatic progression of the carousel's slideshow functionality.
    */
-  play(): void {}
+  play({
+    navigationDelay = this.timeUntilNextNavigation,
+    period = this.period
+  }: { navigationDelay?: number; period?: number } = {}): void {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
+    }
+
+    if (this.progress$) {
+      this.progress$ = of(0);
+    }
+
+    const ticks$ = timer(0, 250);
+    const next$ = ticks$.pipe(
+      delay(navigationDelay),
+      throttleTime(period)
+    );
+
+    this.timerSubscription = next$.subscribe(() => {
+      this.next();
+      this.cdRef.markForCheck();
+    });
+    this.isPlaying = true;
+  }
 
   /**
    * Pauses automatic progression of the carousel's slideshow functionality, retaining current state.
    */
-  pause(): void {}
+  pause(): void {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
+    }
+    this.isPlaying = false;
+
+    const now = new Date();
+    const diff = now.getTime() - this.dateLastNavigated.getTime();
+    this.timeUntilNextNavigation = this.period - diff;
+  }
 
   /**
    * Stops and resets the carousel's slideshow functionality to initial constraints.
    */
-  stop(): void {}
+  stop(): void {
+    this.pause();
+    this.timeUntilNextNavigation = 0;
+    this.dateLastNavigated = undefined;
+    this.index = 0;
+  }
 
   /**
    * Navigate to the next image in the queue.
@@ -76,6 +139,7 @@ export class CarouselComponent implements OnInit {
     } else {
       this.index = 0;
     }
+    this.updateDateLastNavigated();
   }
 
   /**
@@ -89,14 +153,7 @@ export class CarouselComponent implements OnInit {
     } else {
       this.index = len - 1;
     }
-  }
-
-  /**
-   * Navigate to a specified index within the queue of images.
-   * @param index Index to navigate to
-   */
-  select(index: number): void {
-    this.index = index;
+    this.updateDateLastNavigated();
   }
 
   /**
@@ -114,5 +171,31 @@ export class CarouselComponent implements OnInit {
       default:
         this.next();
     }
+  }
+
+  /**
+   * Navigate to a specified index within the queue of images.
+   * @param index Index to navigate to
+   */
+  select(index: number): void {
+    this.index = index;
+    this.play();
+  }
+
+  onNavigated(direction: CardinalDirection): void {
+    this.navigate(direction);
+    this.play();
+  }
+
+  private initIndex(): void {
+    if (this.items[this.initialIndex]) {
+      this.index = this.initialIndex;
+    } else {
+      this.index = 0;
+    }
+  }
+
+  private updateDateLastNavigated(): void {
+    this.dateLastNavigated = new Date();
   }
 }
